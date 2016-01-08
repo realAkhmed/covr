@@ -357,7 +357,7 @@ process_examples <- function(pkg, lib = getwd(), quiet = TRUE) {
   # pdf output at lib
   header_lines <- rex::re_substitutes(header_lines,
     rex::rex("grDevices::pdf(paste(pkgname, \"-Ex.pdf\", sep=\"\")"),
-    paste0("grDevices::pdf(\"", file.path(lib, pkg$package), "-Ex.pdf\""))
+    paste0("grDevices::pdf(\"", normalize_path(file.path(lib, pkg$package), winslash = "/"), "-Ex.pdf\""))
 
   # remove header source line
   lines <- lines[-2]
