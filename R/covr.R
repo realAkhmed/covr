@@ -254,18 +254,11 @@ package_coverage <- function(path = ".",
 }
 
 generate_display_name <- function(x, path = NULL) {
-  file_path <- normalize_path(getSrcFilename(x$srcref, full.names = TRUE), mustWork = FALSE)
+  file_path <- normalize_path(getSrcFilename(x$srcref, full.names = TRUE), mustWork = FALSE, winslash = "/")
   if (!is.null(path)) {
+    path <- normalize_path(path, winslash = "/")
 
-    # we have to check the system explicitly because both file.path and
-    # normalizePath strip the trailing path separator.
-    if (is_windows()) {
-      sep <- "\\"
-    } else {
-      sep <- "/"
-    }
-
-    package_path <- paste0(path, sep)
+    package_path <- paste0(path, "/")
 
     file_path <- rex::re_substitutes(file_path, rex::rex(package_path), "")
   }
