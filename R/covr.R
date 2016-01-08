@@ -273,7 +273,20 @@ generate_display_name <- function(x, path = NULL) {
 }
 
 run_tests <- function(pkg, tmp_lib, dots, type, quiet, use_try = TRUE) {
-  testing_dir <- test_directory(pkg$path)
+
+  # directories for vignettes and examples. We check them here so we can fail
+  # fast if they don't exist.
+  if (type == "test") {
+    test_dir <- test_directory(pkg$path)
+  }
+
+  if (type == "vignette") {
+    vignette_dir <- vignette_directory(pkg$path)
+  }
+
+  if (type == "example") {
+    example_dir <- example_directory(pkg$path)
+  }
 
   # install the package in a temporary directory
   RCMD("INSTALL",
@@ -297,19 +310,15 @@ run_tests <- function(pkg, tmp_lib, dots, type, quiet, use_try = TRUE) {
     ns_env <- loadNamespace(pkg$package)
     env <- new.env(parent = ns_env) # nolint
 
-    # directories for vignettes and examples
-    vignette_dir <- file.path(pkg$path, "vignettes")
-    example_dir <- file.path(pkg$path, "man")
-
     # get expressions to run
     exprs <-
       c(dots,
         quote("library(methods)"),
-        if (type == "test" && file.exists(testing_dir)) {
+        if (type == "test" && test_dir) {
           if (isTRUE(use_try)) {
-            bquote(try(source_dir(path = .(testing_dir), env = .(env), quiet = .(quiet)), silent = .(quiet)))
+            bquote(try(source_dir(path = .(test_dir), env = .(env), quiet = .(quiet)), silent = .(quiet)))
           } else {
-            bquote(source_dir(path = .(testing_dir), env = .(env), quiet = .(quiet)))
+            bquote(source_dir(path = .(test_dir), env = .(env), quiet = .(quiet)))
           }
         } else if (type == "vignette" && file.exists(vignette_dir)) {
           sources <- compact(tangle_vignettes(pkg))

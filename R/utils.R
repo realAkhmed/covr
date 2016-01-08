@@ -42,6 +42,22 @@ test_directory <- function(path) {
   }
 }
 
+example_directory <- function(path) {
+  example_dir <- file.path(path, "man")
+  if (!file.exists(example_dir)) {
+    stop("No example directory found", call. = FALSE)
+  }
+  example_dir
+}
+
+vignette_directory <- function(path) {
+  vignette_dir <- file.path(path, "vignettes")
+  if (!file.exists(vignette_dir)) {
+    stop("No vignette directory found", call. = FALSE)
+  }
+  vignette_dir
+}
+
 `[.coverage` <- function(x, i, ...) {
   attrs <- attributes(x)
   attrs$names <- attrs$names[i]
