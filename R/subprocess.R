@@ -45,10 +45,10 @@ subprocess <- function(code, calling_env = parent.frame(),
       ".env <- readRDS('%s')",
       "environment(fun) <- .env",
       "fun()"),
-    normalizePath(tmp_global_env, winslash = "/", mustWork = FALSE),
-    normalizePath(tmp_code, winslash = "/", mustWork = FALSE),
-    normalizePath(tmp_objs, winslash = "/", mustWork = FALSE),
-    normalizePath(tmp_calling_env, winslash = "/", mustWork = FALSE)
+    normalize_path(tmp_global_env, winslash = "/", mustWork = FALSE),
+    normalize_path(tmp_code, winslash = "/", mustWork = FALSE),
+    normalize_path(tmp_objs, winslash = "/", mustWork = FALSE),
+    normalize_path(tmp_calling_env, winslash = "/", mustWork = FALSE)
   )
 
   writeChar(con = tmp_source, command, eos = NULL)

@@ -254,7 +254,7 @@ package_coverage <- function(path = ".",
 }
 
 generate_display_name <- function(x, path = NULL) {
-  file_path <- normalizePath(getSrcFilename(x$srcref, full.names = TRUE), mustWork = FALSE)
+  file_path <- normalize_path(getSrcFilename(x$srcref, full.names = TRUE), mustWork = FALSE)
   if (!is.null(path)) {
 
     # we have to check the system explicitly because both file.path and

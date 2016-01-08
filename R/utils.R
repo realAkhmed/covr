@@ -53,7 +53,7 @@ test_directory <- function(path) {
 
 source_dir <- function(path, pattern = rex::rex(".", one_of("R", "r"), end), env,
                        chdir = TRUE, quiet = FALSE) {
-  files <- normalizePath(list.files(path, pattern, full.names = TRUE))
+  files <- normalize_path(list.files(path, pattern, full.names = TRUE))
   lapply(files, source2, path = path, env = env, quiet = quiet)
 }
 

@@ -61,7 +61,7 @@ exclude <- function(coverage,
 
   df$full_name <- vapply(coverage,
     function(x) {
-      normalizePath(getSrcFilename(x$srcref, full.names = TRUE), mustWork = FALSE)
+      normalize_path(getSrcFilename(x$srcref, full.names = TRUE), mustWork = FALSE)
     },
     character(1))
 
@@ -154,7 +154,7 @@ normalize_exclusions <- function(x, path = NULL) {
   if (!is.null(path)) {
     names(x) <- file.path(path, names(x))
   }
-  names(x) <- normalizePath(names(x), mustWork = FALSE)
+  names(x) <- normalize_path(names(x), mustWork = FALSE)
 
   remove_line_duplicates(
     remove_file_duplicates(
