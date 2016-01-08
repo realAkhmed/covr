@@ -307,19 +307,19 @@ run_tests <- function(pkg, tmp_lib, dots, type, quiet, use_try = TRUE) {
     exprs <-
       c(dots,
         quote("library(methods)"),
-        if (type == "test" && test_dir) {
+        if (type == "test") {
           if (isTRUE(use_try)) {
             bquote(try(source_dir(path = .(test_dir), env = .(env), quiet = .(quiet)), silent = .(quiet)))
           } else {
             bquote(source_dir(path = .(test_dir), env = .(env), quiet = .(quiet)))
           }
-        } else if (type == "vignette" && file.exists(vignette_dir)) {
+        } else if (type == "vignette") {
           sources <- compact(tangle_vignettes(pkg))
           lapply(sources,
             function(file) {
               bquote(source2(.(file), .(env), path = .(vignette_dir), quiet = .(quiet)))
             })
-        } else if (type == "example" && file.exists(example_dir)) {
+        } else if (type == "example") {
           ex_file <- normalize_path(process_examples(pkg, tmp_lib, quiet))
           if (!is.null(ex_file)) {
             bquote(source2(.(ex_file), env = .(env), quiet = .(quiet)))
