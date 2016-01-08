@@ -1,5 +1,6 @@
 # Covr #
 [![wercker status](https://app.wercker.com/status/7b3f03814c6f978cfaad12b4d0378b11/s/master "wercker status")](https://app.wercker.com/project/bykey/7b3f03814c6f978cfaad12b4d0378b11)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jimhester/covr?branch=master&svg=true)](https://ci.appveyor.com/project/jimhester/covr)
 [![codecov.io](https://codecov.io/github/jimhester/covr/coverage.svg?branch=master)](https://codecov.io/github/jimhester/covr?branch=master)
 [![CRAN version](http://www.r-pkg.org/badges/version/covr)](http://cran.rstudio.com/web/packages/covr/index.html)
 
