@@ -318,7 +318,7 @@ run_tests <- function(pkg, tmp_lib, dots, type, quiet, use_try = TRUE) {
               bquote(source2(.(file), .(env), path = .(vignette_dir), quiet = .(quiet)))
             })
         } else if (type == "example" && file.exists(example_dir)) {
-          ex_file <- process_examples(pkg, tmp_lib, quiet) # nolint
+          ex_file <- normalize_path(process_examples(pkg, tmp_lib, quiet))
           if (!is.null(ex_file)) {
             bquote(source2(.(ex_file), env = .(env), quiet = .(quiet)))
           }
