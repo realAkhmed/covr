@@ -246,7 +246,7 @@ package_root <- function(path) {
     identical(path, dirname(path))
   }
 
-  path <- normalizePath(path, mustWork = FALSE)
+  path <- normalize_path(path, mustWork = FALSE)
   if (!file.exists(path)) {
     return(NULL)
   }
@@ -260,6 +260,13 @@ package_root <- function(path) {
   } else {
     path
   }
+}
+
+# removes the tailing / from paths (which cause issues on windows).
+normalize_path <- function(x, ...) {
+  x <- normalizePath(x, ...)
+  x <- sub("[/\\]+$", "", x)
+  x
 }
 
 read_description <- function(path) {
