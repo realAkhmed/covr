@@ -247,6 +247,10 @@ package_root <- function(path) {
   }
 
   path <- normalizePath(path, mustWork = FALSE)
+  if (!file.exists(path)) {
+    return(NULL)
+  }
+
   while (!is_root(path) && !has_description(path)) {
     path <- dirname(path)
   }
