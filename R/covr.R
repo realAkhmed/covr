@@ -131,7 +131,7 @@ package_coverage <- function(path = ".",
                              line_exclusions = NULL,
                              function_exclusions = NULL,
                              code = character(),
-                             install_directory = Sys.getenv("COVR_INSTALL_DIRECTORY") %||% temp_file("R_LIBS"),
+                             install_directory = Sys.getenv("COVR_INSTALL_DIR") %||% temp_file("R_LIBS"),
                              ...,
                              exclusions) {
 
