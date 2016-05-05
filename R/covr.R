@@ -131,6 +131,7 @@ package_coverage <- function(path = ".",
                              line_exclusions = NULL,
                              function_exclusions = NULL,
                              code = character(),
+                             install_directory = Sys.getenv("COVR_INSTALL_DIRECTORY") %||% temp_file("R_LIBS"),
                              ...,
                              exclusions) {
 
@@ -169,7 +170,7 @@ package_coverage <- function(path = ".",
 
   on.exit(clear_counters())
 
-  tmp_lib <- temp_file("R_LIBS")
+  tmp_lib <- install_directory
   dir.create(tmp_lib)
 
   flags <- getOption("covr.flags")
