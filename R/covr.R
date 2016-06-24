@@ -227,7 +227,8 @@ package_coverage <- function(path = ".",
         })
       }
       if ("tests" %in% type) {
-        tools::testInstalledPackage(pkg$package, outDir = tmp_lib, types = "tests", lib.loc = tmp_lib, ...)
+        succeeded <- tools::testInstalledPackage(pkg$package, outDir = tmp_lib, types = "tests", lib.loc = tmp_lib, ...)
+        if (succeeded != 0L) stop("At least one test failed!", call. = FALSE)
       }
 
       run_commands(pkg, tmp_lib, code)
